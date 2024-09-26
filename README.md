@@ -1,6 +1,6 @@
 # Flappy Zyon
 
-A Sci-Fi themed Flappy Bird game, featuring a phoenix as the player character, multiple difficulty levels, and smooth gameplay transitions.
+A Sci-Fi themed Flappy Bird game with multiple difficulty levels.
 
 ## Features
 
