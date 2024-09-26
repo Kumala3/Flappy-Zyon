@@ -55,7 +55,7 @@ class Bird:
         Load the phoenix image from an external file.
         """
         try:
-            image = pygame.image.load("phoenix.png").convert_alpha()
+            image = pygame.image.load("assets/phoenix.png").convert_alpha()
             return pygame.transform.scale(image, (self.width, self.height))
         except pygame.error as e:
             print(f"Unable to load image 'phoenix.png': {e}")
