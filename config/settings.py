@@ -10,6 +10,9 @@ import pygame
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 700
 
+# Themes
+THEMES = ["space", "nebula", "planet"]
+
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
