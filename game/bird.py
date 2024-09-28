@@ -14,7 +14,7 @@ class Bird:
     Represents the player's bird (phoenix icon).
     """
 
-    def __init__(self, gravity, flap_strength):
+    def __init__(self, gravity: float, flap_strength: float) -> None:
         self.x = 100
         self.y = pygame.display.get_surface().get_height() // 2
         self.velocity = 0
@@ -54,7 +54,7 @@ class Bird:
         """
         self.velocity = self.flap_strength
 
-    def draw(self, screen):
+    def draw(self, screen: pygame.Surface) -> None:
         """
         Draws the bird on the screen.
         """

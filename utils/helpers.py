@@ -269,7 +269,7 @@ def draw_game(screen, bird, obstacles, stars, game_state, particles, powerups):
             "Score: " + str(game_state["score"]), True, SCI_FI_BLUE
         )
         high_score_text = FONT_SMALL.render(
-            "High Score: " + str(game_state["high_score"]), True, WHITE
+            "Highest Score: " + str(game_state["high_score"]), True, WHITE
         )
         retry_text = FONT_SMALL.render(
             "Press R to Retry or Q to Quit", True, SCI_FI_GREEN
