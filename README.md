@@ -14,7 +14,7 @@ A Sci-Fi themed Flappy Bird game, featuring a phoenix as the player character, m
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/sci-fi-flappy-bird.git
+   git clone https://github.com/Kumala3/Flappy-Zyon.git
    ```
 
 2. **Install Dependencies**:
