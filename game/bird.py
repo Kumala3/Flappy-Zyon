@@ -22,6 +22,8 @@ class Bird:
         self.height = 40
         self.gravity = gravity
         self.flap_strength = flap_strength
+        self.shield = False
+        self.shield_timer = 0
         self.image = self.load_image()
         self.rect = self.image.get_rect(center=(self.x, self.y))
 
@@ -57,3 +59,8 @@ class Bird:
         Draws the bird on the screen.
         """
         screen.blit(self.image, self.rect)
+        if self.shield:
+            # Draw shield indicator around bird
+            pygame.draw.circle(
+                screen, (0, 255, 255), self.rect.center, self.width // 2 + 5, 2
+            )
