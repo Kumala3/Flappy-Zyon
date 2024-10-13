@@ -82,6 +82,10 @@ def handle_events(bird, game_state, background_images, flap_sound):
                 if event.key == pygame.K_SPACE:
                     bird.flap()
                     flap_sound.play()
+                elif event.key == pygame.K_g:
+                    # Enable shield cheat
+                    bird.shield = True
+                    bird.shield_timer = 300  # Shield lasts for 300 frames (5 seconds)
                 elif event.key == pygame.K_q:
                     pygame.quit()
                     sys.exit()
@@ -278,16 +282,23 @@ def draw_game(screen, bird, obstacles, stars, game_state, particles, powerups):
 
         # Draw time played
         text_rect = time_text.get_rect()
-        text_rect.topright = (SCREEN_WIDTH - 10, 10)  # 10 pixels from the top-right corner
+        text_rect.topright = (
+            SCREEN_WIDTH - 10,
+            10,
+        )  # 10 pixels from the top-right corner
         screen.blit(time_text, text_rect)
 
         # Draw score
         score_text = FONT.render(str(game_state["score"]), True, WHITE)
         screen.blit(score_text, (SCREEN_WIDTH // 2 - score_text.get_width() // 2, 50))
-        # Optionally draw shield indicator
+
+        # Check if shield is active
         if hasattr(bird, "shield") and bird.shield:
-            shield_text = FONT_SMALL.render("Shield Active", True, SCI_FI_GREEN)
-            screen.blit(shield_text, (10, 10))
+            shield_seconds_left = bird.shield_timer // 60
+            shield_seconds_left_text = FONT_SMALL.render(
+                f"Shield active for {shield_seconds_left:02} s", True, SCI_FI_GREEN
+            )
+            screen.blit(shield_seconds_left_text, (10, 10))
     elif game_state["state"] == "game_over":
         # Draw game over screen
         game_over_text = FONT.render("Game Over", True, SCI_FI_GREEN)
