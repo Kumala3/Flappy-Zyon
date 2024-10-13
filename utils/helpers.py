@@ -54,6 +54,7 @@ def handle_events(bird, game_state, background_images):
                     game_state["gravity"] = 0.4
                     game_state["flap_strength"] = -10
                     game_state["state"] = "playing"
+                    game_state["start_time"] = pygame.time.get_ticks()
                     bird.gravity = game_state["gravity"]
                     bird.flap_strength = game_state["flap_strength"]
                 elif event.key == pygame.K_m:
@@ -62,6 +63,7 @@ def handle_events(bird, game_state, background_images):
                     game_state["gravity"] = 0.5
                     game_state["flap_strength"] = -9
                     game_state["state"] = "playing"
+                    game_state["start_time"] = pygame.time.get_ticks()
                     bird.gravity = game_state["gravity"]
                     bird.flap_strength = game_state["flap_strength"]
                 elif event.key == pygame.K_h:
@@ -70,6 +72,7 @@ def handle_events(bird, game_state, background_images):
                     game_state["gravity"] = 0.6
                     game_state["flap_strength"] = -8
                     game_state["state"] = "playing"
+                    game_state["start_time"] = pygame.time.get_ticks()
                     bird.gravity = game_state["gravity"]
                     bird.flap_strength = game_state["flap_strength"]
                 elif event.key == pygame.K_q:
@@ -88,6 +91,7 @@ def handle_events(bird, game_state, background_images):
                 elif event.key == pygame.K_q:
                     pygame.quit()
                     sys.exit()
+                game_state["start_tme"] = pygame.time.get_ticks()
 
 
 def update_game(
@@ -254,6 +258,28 @@ def draw_game(screen, bird, obstacles, stars, game_state, particles, powerups):
         # Draw particles
         for particle in particles:
             particle.draw(screen)
+
+        # Ensure start time isn't None
+        if game_state["start_time"] is None:
+            game_state["start_time"] = pygame.time.get_ticks()
+
+        # Calculate elapsed time
+        current_time = pygame.time.get_ticks()
+        elapsed_time_ms = current_time - game_state["start_time"]
+        elapsed_time_sec = elapsed_time_ms // 1000  # Convert to seconds
+
+        # Format the time as MM:SS
+        hours, remainder = divmod(elapsed_time_sec, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        time_display = f"Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}"
+
+        time_text = FONT_SMALL.render(time_display, True, WHITE)
+
+        # Draw time played
+        text_rect = time_text.get_rect()
+        text_rect.topright = (SCREEN_WIDTH - 10, 10)  # 10 pixels from the top-right corner
+        screen.blit(time_text, text_rect)
+
         # Draw score
         score_text = FONT.render(str(game_state["score"]), True, WHITE)
         screen.blit(score_text, (SCREEN_WIDTH // 2 - score_text.get_width() // 2, 50))

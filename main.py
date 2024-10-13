@@ -7,7 +7,6 @@ Entry point of the game. Initializes and runs the game loop.
 import pygame
 import sys
 import os
-import random
 from config.settings import FPS, SCREEN_WIDTH, SCREEN_HEIGHT
 from game.bird import Bird
 from game.obstacle import Obstacle
@@ -65,6 +64,7 @@ def main():
         "state": "start",
         "score": 0,
         "high_score": high_score,
+        "start_time": None,
         "frame_count": 0,
         "reset": False,
         "level": None,
@@ -109,6 +109,7 @@ def main():
             game_state["theme"] = None
             game_state["current_background"] = None
             game_state["score_saved"] = False
+            game_state["start_time"] = pygame.time.get_ticks()
         else:
             update_game(
                 bird,
