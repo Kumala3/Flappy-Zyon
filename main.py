@@ -87,6 +87,9 @@ def main():
     while running:
         clock.tick(FPS)
 
+        # Update frame count
+        game_state["frame_count"] += 1
+
         # Handle events
         handle_events(bird, game_state, background_images)
 
@@ -116,6 +119,7 @@ def main():
                 powerups,
                 score_sound,
                 game_over_sound,
+                FPS,
             )
 
         # Save high score if game over

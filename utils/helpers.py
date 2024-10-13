@@ -99,6 +99,7 @@ def update_game(
     powerups,
     score_sound,
     game_over_sound,
+    FPS,
 ):
     """
     Updates the game objects and game state.
@@ -128,8 +129,8 @@ def update_game(
         # Remove obstacles that have gone off screen
         obstacles[:] = [o for o in obstacles if o.x + o.width > 0]
 
-        # Generate power-ups randomly
-        if random.randint(0, 500) == 1:
+        # Generate power-ups every 4 seconds
+        if game_state["frame_count"] % (4 * FPS) == 0:
             powerups.append(PowerUp(SCREEN_WIDTH))
 
         # Update power-ups
@@ -181,8 +182,6 @@ def update_game(
             bird.shield_timer -= 1
             if bird.shield_timer <= 0:
                 bird.shield = False
-
-        game_state["frame_count"] += 1
 
 
 def draw_game(screen, bird, obstacles, stars, game_state, particles, powerups):
