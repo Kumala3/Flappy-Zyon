@@ -22,7 +22,7 @@ from config.settings import (
 from game.obstacle import Obstacle
 
 
-def handle_events(bird, game_state, background_images):
+def handle_events(bird, game_state, background_images, flap_sound):
     """
     Handles user input events.
     """
@@ -81,6 +81,7 @@ def handle_events(bird, game_state, background_images):
             elif game_state["state"] == "playing":
                 if event.key == pygame.K_SPACE:
                     bird.flap()
+                    flap_sound.play()
                 elif event.key == pygame.K_q:
                     pygame.quit()
                     sys.exit()

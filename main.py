@@ -91,7 +91,7 @@ def main():
         game_state["frame_count"] += 1
 
         # Handle events
-        handle_events(bird, game_state, background_images)
+        handle_events(bird, game_state, background_images, flap_sound)
 
         # Update game objects and state
         if game_state["reset"]:
